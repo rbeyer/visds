@@ -1,0 +1,27 @@
+[32m2022-11-04 12:26:16 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 30e72f05-8985-49a7-8e91-ffea2297bdf4 - 1760880 - vis_raw_fetch_todb - LOGS_CAPTURED - Started capturing logs for step: vis_raw_fetch_todb.
+[32m2022-11-04 12:26:17 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 30e72f05-8985-49a7-8e91-ffea2297bdf4 - 1760880 - vis_raw_fetch_todb - STEP_START - Started execution of step "vis_raw_fetch_todb".
+[32m2022-11-04 12:26:17 -0700[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 30e72f05-8985-49a7-8e91-ffea2297bdf4 - 1760880 - vis_raw_fetch_todb - STEP_FAILURE - Execution of step "vis_raw_fetch_todb" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "vis_raw_fetch_todb"::
+
+ModuleNotFoundError: No module named 'psycopg2'
+
+Stack Trace:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/utils.py", line 47, in solid_execution_error_boundary
+    yield
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/__init__.py", line 430, in iterate_with_context
+    next_output = next(iterator)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute_generator.py", line 74, in _coerce_solid_compute_fn_to_iterator
+    result = fn(context, **kwargs) if context_arg_provided else fn(**kwargs)
+  File "/Work/VIPER/dagster/visdag/visdag/assets/vis_raw_fetch.py", line 49, in vis_raw_fetch_todb
+    do_db(args)
+  File "/Work/VIPER/dagster/visdag/visdag/watcher.py", line 113, in do_db
+    engine = create_engine(dburl)
+  File "<string>", line 2, in create_engine
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/sqlalchemy/util/deprecations.py", line 309, in warned
+    return fn(*args, **kwargs)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 548, in create_engine
+    dbapi = dialect_cls.dbapi(**dbapi_args)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 811, in dbapi
+    import psycopg2
+[0m

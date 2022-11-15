@@ -1,0 +1,44 @@
+[32m2022-11-04 12:27:20 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 718cf38a-63e1-4c2c-86e9-e3bcd27284c1 - 1762590 - vis_raw_fetch_todb - LOGS_CAPTURED - Started capturing logs for step: vis_raw_fetch_todb.
+[32m2022-11-04 12:27:20 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 718cf38a-63e1-4c2c-86e9-e3bcd27284c1 - 1762590 - vis_raw_fetch_todb - STEP_START - Started execution of step "vis_raw_fetch_todb".
+Problem while processing message. Closing connection
+Traceback (most recent call last):
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/yamcs/core/subscriptions.py", line 148, in _on_websocket_message
+    self._callback(data)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/yamcs/tmtc/client.py", line 62, in _wrap_callback_parse_parameter_data
+    on_data(parameter_data)
+  File "/Work/VIPER/vipersci/src/vipersci/vis/pds/create_raw.py", line 202, in from_yamcs_parameters
+    self.__call__(d, im)
+  File "/Work/VIPER/vipersci/src/vipersci/vis/pds/create_raw.py", line 165, in __call__
+    rp = make_raw_product(metadata, image, self.outdir)
+  File "/Work/VIPER/vipersci/src/vipersci/vis/pds/create_raw.py", line 266, in make_raw_product
+    write_tiff(pds.VISID(rp.product_id), image, outdir))
+  File "/Work/VIPER/vipersci/src/vipersci/vis/pds/create_raw.py", line 365, in write_tiff
+    outpath = (outdir / str(pid)).with_suffix(".tif")
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+[32m2022-11-04 12:45:35 -0700[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 718cf38a-63e1-4c2c-86e9-e3bcd27284c1 - 1762590 - vis_raw_fetch_todb - STEP_FAILURE - Execution of step "vis_raw_fetch_todb" failed.
+
+dagster._core.errors.DagsterExecutionInterruptedError
+
+Stack Trace:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/execute_plan.py", line 225, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/execute_step.py", line 361, in core_dagster_event_sequence_for_step
+    _step_output_error_checked_user_event_sequence(step_context, user_event_sequence)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/execute_step.py", line 69, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute.py", line 174, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn):
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute.py", line 151, in _yield_compute_results
+    user_event_generator,
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/__init__.py", line 430, in iterate_with_context
+    next_output = next(iterator)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute_generator.py", line 74, in _coerce_solid_compute_fn_to_iterator
+    result = fn(context, **kwargs) if context_arg_provided else fn(**kwargs)
+  File "/Work/VIPER/dagster/visdag/visdag/assets/vis_raw_fetch.py", line 49, in vis_raw_fetch_todb
+    do_db(args)
+  File "/Work/VIPER/dagster/visdag/visdag/watcher.py", line 125, in do_db
+  File "/Work/VIPER/dagster/visdag/visdag/watcher.py", line 204, in wait_loop
+    while True:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/interrupts.py", line 74, in _new_signal_handler
+    raise error_cls()
+[0m

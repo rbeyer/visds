@@ -1,0 +1,26 @@
+[32m2022-11-04 12:16:28 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e4091504-f80c-485b-b9c0-ae16bf7e7253 - 1753937 - vis_raw_fetch_todb - LOGS_CAPTURED - Started capturing logs for step: vis_raw_fetch_todb.
+[32m2022-11-04 12:16:28 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - e4091504-f80c-485b-b9c0-ae16bf7e7253 - 1753937 - vis_raw_fetch_todb - STEP_START - Started execution of step "vis_raw_fetch_todb".
+[32m2022-11-04 12:16:28 -0700[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - e4091504-f80c-485b-b9c0-ae16bf7e7253 - 1753937 - vis_raw_fetch_todb - STEP_FAILURE - Execution of step "vis_raw_fetch_todb" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "vis_raw_fetch_todb"::
+
+TypeError: 'PosixPath' object is not subscriptable
+
+Stack Trace:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/utils.py", line 47, in solid_execution_error_boundary
+    yield
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/__init__.py", line 430, in iterate_with_context
+    next_output = next(iterator)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute_generator.py", line 74, in _coerce_solid_compute_fn_to_iterator
+    result = fn(context, **kwargs) if context_arg_provided else fn(**kwargs)
+  File "/Work/VIPER/dagster/visdag/visdag/assets/vis_raw_fetch.py", line 53, in vis_raw_fetch_todb
+    args = parser.parse_args(args)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/argparse.py", line 1755, in parse_args
+    args, argv = self.parse_known_args(args, namespace)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/argparse.py", line 1787, in parse_known_args
+    namespace, args = self._parse_known_args(args, namespace)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/argparse.py", line 1828, in _parse_known_args
+    option_tuple = self._parse_optional(arg_string)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/argparse.py", line 2115, in _parse_optional
+    if not arg_string[0] in self.prefix_chars:
+[0m

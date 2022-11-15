@@ -1,0 +1,4 @@
+localhost:8090/yamcs
+postgresql://viper:viper@localhost:5438/visdb
+./
+Press Ctrl-C to stop watching.

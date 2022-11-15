@@ -1,0 +1,113 @@
+from dagster import (
+        load_assets_from_current_module, 
+        load_assets_from_package_module, 
+        repository,
+        resource,
+        with_resources
+        )
+from visdag import assets
+import os
+
+
+#class Config:
+#    def set_configs(self, deployment_name): 
+@repository
+def visdag():
+    deployment_name = os.getenv("DAGSTER_DEPLOYMENT", "dev") 
+    config_defs = {
+            "dev": {
+                "yamcs_config": {
+                    "parameters": [ 
+                        "/ViperGround/Images/ImageData/Navcam_left_icer",
+                        "/ViperGround/Images/ImageData/Navcam_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Navcam_right_icer", 
+                        "/ViperGround/Images/ImageData/Navcam_right_jpeg", 
+                        "/ViperGround/Images/ImageData/Aftcam_left_icer", 
+                        "/ViperGround/Images/ImageData/Aftcam_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Aftcam_right_icer", 
+                        "/ViperGround/Images/ImageData/Aftcam_right_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_left_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_right_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_right_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_left_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_right_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_right_jpeg", 
+                    ],
+                    "client": "localhost:8090/yamcs",
+                    "output_mode": "JSON"
+                    },
+                "db_connection": {
+                    # This configuration should really be set as a set
+                    # of environment variables instead of hard-coded. Too
+                    # many things in here are docker dependent and we have
+                    # this copied in two places. However, I need to get this
+                    # to work, so it's hard-coded for now.
+                    "postgres_user": "viper",
+                    # We should move the password to an environment variable
+                    # before production or deployment.
+                    "postgres_password": "viper",
+                    "postgres_db": "visdb",
+                    "ports": "5438:5432",
+                    "db_type": "postgres",
+                    "db_host": "localhost"
+                    },
+                },
+            "production": {
+                "yamcs_config": {
+                    "parameters": [ 
+                        "/ViperGround/Images/ImageData/Navcam_left_icer",
+                        "/ViperGround/Images/ImageData/Navcam_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Navcam_right_icer", 
+                        "/ViperGround/Images/ImageData/Navcam_right_jpeg", 
+                        "/ViperGround/Images/ImageData/Aftcam_left_icer", 
+                        "/ViperGround/Images/ImageData/Aftcam_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Aftcam_right_icer", 
+                        "/ViperGround/Images/ImageData/Aftcam_right_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_left_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_right_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_front_right_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_left_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_left_jpeg", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_right_icer", 
+                        "/ViperGround/Images/ImageData/Hazcam_back_right_jpeg",
+                        ],
+                    "client": "localhost:8090/yamcs",
+                    "output_mode": "JSON"
+                    },
+                "db_connection": {
+                    # This configuration should really be set as a set
+                    # of environment variables instead of hard-coded. Too
+                    # many things in here are docker dependent and we have
+                    # this copied in two places. However, I need to get this
+                    # to work, so it's hard-coded for now.
+                    "postgres_user": "viper",
+                    # We should move the password to an environment variable
+                    # before production or deployment.
+                    "postgres_password": "viper",
+                    "postgres_db": "visdb",
+                    "ports": "5438:5432",
+                    "db_type": "postgres",
+                    "db_host": "localhost"
+                    },
+                },
+            }
+        #return(config_def[deployment_name])
+        #config_defs=config_defs[deployment_name]
+
+#@resource
+#def config_defs(init_context):
+#    d_name = init.context.deployment_name
+#
+#    config = Config()
+#    return()
+
+    return [
+            #load_assets_from_package_module(assets),
+            *with_resources(
+                definitions=load_assets_from_package_module(assets),
+                resource_defs=config_defs[deployment_name],
+                )
+        ]

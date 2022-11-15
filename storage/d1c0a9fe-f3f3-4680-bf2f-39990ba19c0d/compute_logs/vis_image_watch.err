@@ -1,0 +1,18 @@
+[32m2022-10-25 11:28:35 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d1c0a9fe-f3f3-4680-bf2f-39990ba19c0d - 2023896 - vis_image_watch - LOGS_CAPTURED - Started capturing logs for step: vis_image_watch.
+[32m2022-10-25 11:28:36 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d1c0a9fe-f3f3-4680-bf2f-39990ba19c0d - 2023896 - vis_image_watch - STEP_START - Started execution of step "vis_image_watch".
+[32m2022-10-25 11:28:36 -0700[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - d1c0a9fe-f3f3-4680-bf2f-39990ba19c0d - 2023896 - vis_image_watch - STEP_FAILURE - Execution of step "vis_image_watch" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "vis_image_watch"::
+
+NameError: name 'sleep' is not defined
+
+Stack Trace:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/utils.py", line 47, in solid_execution_error_boundary
+    yield
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/__init__.py", line 430, in iterate_with_context
+    next_output = next(iterator)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute_generator.py", line 74, in _coerce_solid_compute_fn_to_iterator
+    result = fn(context, **kwargs) if context_arg_provided else fn(**kwargs)
+  File "/Work/VIPER/dagster/visdag/visdag/assets/vis_raw_parameter.py", line 60, in vis_image_watch
+    sleep(15)
+[0m

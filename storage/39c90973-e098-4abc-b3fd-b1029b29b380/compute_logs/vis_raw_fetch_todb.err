@@ -1,0 +1,18 @@
+[32m2022-11-04 11:48:05 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 39c90973-e098-4abc-b3fd-b1029b29b380 - 1737562 - vis_raw_fetch_todb - LOGS_CAPTURED - Started capturing logs for step: vis_raw_fetch_todb.
+[32m2022-11-04 11:48:05 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 39c90973-e098-4abc-b3fd-b1029b29b380 - 1737562 - vis_raw_fetch_todb - STEP_START - Started execution of step "vis_raw_fetch_todb".
+[32m2022-11-04 11:48:05 -0700[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 39c90973-e098-4abc-b3fd-b1029b29b380 - 1737562 - vis_raw_fetch_todb - STEP_FAILURE - Execution of step "vis_raw_fetch_todb" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "vis_raw_fetch_todb"::
+
+NameError: name 'args' is not defined
+
+Stack Trace:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/utils.py", line 47, in solid_execution_error_boundary
+    yield
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/__init__.py", line 430, in iterate_with_context
+    next_output = next(iterator)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute_generator.py", line 74, in _coerce_solid_compute_fn_to_iterator
+    result = fn(context, **kwargs) if context_arg_provided else fn(**kwargs)
+  File "/Work/VIPER/dagster/visdag/visdag/assets/vis_raw_fetch.py", line 47, in vis_raw_fetch_todb
+    print(args)
+[0m

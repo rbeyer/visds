@@ -1,0 +1,22 @@
+[32m2022-11-04 10:43:21 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83635247-0d35-45bf-a9e6-d5ddef9f091f - 1700742 - vis_raw_fetch - LOGS_CAPTURED - Started capturing logs for step: vis_raw_fetch.
+[32m2022-11-04 10:43:21 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83635247-0d35-45bf-a9e6-d5ddef9f091f - 1700742 - vis_raw_fetch - STEP_START - Started execution of step "vis_raw_fetch".
+[32m2022-11-04 10:43:21 -0700[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 83635247-0d35-45bf-a9e6-d5ddef9f091f - 1700742 - vis_raw_fetch - STEP_FAILURE - Execution of step "vis_raw_fetch" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "vis_raw_fetch"::
+
+yamcs.core.exceptions.ConnectionFailure: Connection to http://localhost:8090/yamcs failed: connection refused
+
+Stack Trace:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/utils.py", line 47, in solid_execution_error_boundary
+    yield
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/__init__.py", line 430, in iterate_with_context
+    next_output = next(iterator)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute_generator.py", line 74, in _coerce_solid_compute_fn_to_iterator
+    result = fn(context, **kwargs) if context_arg_provided else fn(**kwargs)
+  File "/Work/VIPER/dagster/visdag/visdag/assets/vis_raw_fetch.py", line 61, in vis_raw_fetch
+    on_data=watched.on_data)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/yamcs/tmtc/client.py", line 1254, in create_parameter_subscription
+    subscription.reply(timeout=timeout)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/yamcs/core/futures.py", line 90, in reply
+    raise self._exception
+[0m

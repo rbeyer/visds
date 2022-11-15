@@ -1,0 +1,20 @@
+[32m2022-10-25 14:45:59 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 881727a0-57a0-4a02-9224-4852590acbd7 - 2086932 - vis_raw_fetch2 - LOGS_CAPTURED - Started capturing logs for step: vis_raw_fetch2.
+[32m2022-10-25 14:45:59 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 881727a0-57a0-4a02-9224-4852590acbd7 - 2086932 - vis_raw_fetch2 - STEP_START - Started execution of step "vis_raw_fetch2".
+[32m2022-10-25 14:46:00 -0700[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 881727a0-57a0-4a02-9224-4852590acbd7 - 2086932 - vis_raw_fetch2 - STEP_FAILURE - Execution of step "vis_raw_fetch2" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "vis_raw_fetch2"::
+
+TypeError: arg_parser() takes 0 positional arguments but 1 was given
+
+Stack Trace:
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/utils.py", line 47, in solid_execution_error_boundary
+    yield
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_utils/__init__.py", line 430, in iterate_with_context
+    next_output = next(iterator)
+  File "/Work/Anaconda/anaconda3_2022_Oct/envs/dagster/lib/python3.7/site-packages/dagster/_core/execution/plan/compute_generator.py", line 74, in _coerce_solid_compute_fn_to_iterator
+    result = fn(context, **kwargs) if context_arg_provided else fn(**kwargs)
+  File "/Work/VIPER/dagster/visdag/visdag/assets/watcher.py", line 36, in vis_raw_fetch2
+    watcher.main(args)
+  File "/Work/VIPER/dagster/visdag/visdag/watcher.py", line 138, in main
+    parser = arg_parser(args)
+[0m
