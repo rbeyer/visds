@@ -1,4 +1,4 @@
-from dagster import op, job, sensor, RunRequest
+from dagster import op, job, sensor, RunRequest, SkipReason
 import os
 import hashlib
 
@@ -29,7 +29,6 @@ def log_raw_json():
 def raw_product_json_sensor(context):
     new_files = False
     last_mtime = float(context.cursor) if context.cursor else 0
-
     max_mtime = last_mtime
 
     RAW_DIRECTORY = os.getenv("RAW_DIRECTORY")
@@ -45,6 +44,10 @@ def raw_product_json_sensor(context):
             fstats = os.stat(filepath)
             file_mtime = fstats.st_mtime
             print(file_mtime)
+
+            print("---------------------")
+            print(file_mtime, last_mtime)
+            print("---------------------")
             if file_mtime <= last_mtime:
                 """ Nothing to do with this file because its modification time
                     is from before the most recent modification time stored in
@@ -80,7 +83,7 @@ def raw_product_json_sensor(context):
                         }
                     }
 
-    yield RunRequest(run_key=run_key, run_config=run_config)
+        yield RunRequest(run_key=run_key, run_config=run_config)
 
     if not new_files:
         yield SkipReason(f"No new files found in {RAW_DIRECTORY}.")
