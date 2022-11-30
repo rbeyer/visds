@@ -15,7 +15,7 @@ def get_hash_for_file(fpath):
 # Watch for new json files to be created in the raw_products directory
 # Run this sensor no more often than every 60 seconds.
 #@sensor()
-@sensor(job="log_raw_json")
+@sensor(job=log_raw_json)
 def raw_product_json_sensor(context):
     new_files = False
     last_mtime = float(context.cursor) if context.cursor else 0
