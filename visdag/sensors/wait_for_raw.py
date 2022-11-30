@@ -11,7 +11,14 @@ def get_hash_for_file(fpath):
     md5_checksum = md5.hexdigest()
     return(md5_checksum)
 
-
+"""
+TODO: Can/should the @op and @job be extracted into their own
+file?
+TODO: Replace this generic logging with an actual from_json_to_db 
+function so this starts doing what we really want it to do.
+TODO: Consider replacing the directory sensor with a sensor
+attached to the yamcs server. 
+"""
 @op(config_schema={"filename": str})
 def process_json(context):
     filename = context.op_config["filename"]
