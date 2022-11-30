@@ -1,0 +1,11 @@
+solids:
+    visds_solid:
+      db_config:
+        - DB_TYPE=postgresql
+        - POSTGRES_USER=viper
+        - POSTGRES_PASSWORD=viper
+        - POSTGRES_DB=visdb
+        - POSTGRES_HOST=localhost
+        - POSTGRES_PORT=5438
+      raw_products_dir:
+        /Work/VIPER/vipersci/

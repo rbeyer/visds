@@ -1,6 +1,0 @@
-[32m2022-10-25 11:22:12 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d5730ed5-8ebf-4c5c-937e-82e9ccd0f9e4 - 2021672 - vis_image_watch - LOGS_CAPTURED - Started capturing logs for step: vis_image_watch.
-[32m2022-10-25 11:22:12 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d5730ed5-8ebf-4c5c-937e-82e9ccd0f9e4 - 2021672 - vis_image_watch - STEP_START - Started execution of step "vis_image_watch".
-[32m2022-10-25 11:22:12 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d5730ed5-8ebf-4c5c-937e-82e9ccd0f9e4 - 2021672 - vis_image_watch - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
-[32m2022-10-25 11:22:12 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d5730ed5-8ebf-4c5c-937e-82e9ccd0f9e4 - 2021672 - vis_image_watch - ASSET_MATERIALIZATION - Materialized value vis_image_watch.
-[32m2022-10-25 11:22:12 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d5730ed5-8ebf-4c5c-937e-82e9ccd0f9e4 - 2021672 - vis_image_watch - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
-[32m2022-10-25 11:22:12 -0700[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - d5730ed5-8ebf-4c5c-937e-82e9ccd0f9e4 - 2021672 - vis_image_watch - STEP_SUCCESS - Finished execution of step "vis_image_watch" in 576ms.

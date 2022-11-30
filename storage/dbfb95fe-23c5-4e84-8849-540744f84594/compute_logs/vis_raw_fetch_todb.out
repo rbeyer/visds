@@ -1,1 +1,0 @@
-['--yamcsclient', 'localhost:8090/yamcs', '--outdir', PosixPath('.'), '--dburl', 'postgresql://viper:viper@localhost:5438/visdb']

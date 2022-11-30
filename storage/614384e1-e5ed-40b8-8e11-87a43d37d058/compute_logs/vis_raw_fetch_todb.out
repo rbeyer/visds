@@ -1,1 +1,0 @@
-{'dburl': 'postgresql://viper:viper@localhost:5438/visdb', 'outdir': '/Work/VIPER/dagster/visdag', 'yamcsclient': 'localhost:8090/yamcs'}

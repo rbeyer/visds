@@ -1,41 +1,51 @@
-from dagster import (
-        define_asset_job,
-        load_assets_from_current_module, 
-        load_assets_from_package_module, 
-        repository,
-        resource,
-        ScheduleDefinition,
-        with_resources,
-        )
-from . import assets
-from .jobs import core_assets_schedule
-from .resources import RESOURCES_DEV, RESOURCES_PROD, RESOURCES_LOCAL
-from .ops import *
 import os
+from contextlib import contextmanager
+from dagster import (
+        asset,
+        job,
+        load_assets_from_package_module,
+        op,
+        repository, 
+        with_resources,
+        sensor,
+        )
+from dagster._utils import file_relative_path
 
-resource_defs_by_deployment_name = {
-        "prod": RESOURCES_PROD,
-        "dev": RESOURCES_DEV,
-        "local": RESOURCES_LOCAL,
-        }
+from .assets import raw_assets
+from .jobs import raw_jobs
+from .sensors import raw_sensors
 
-all_jobs = [core_assets_schedule]
+all_assets = [*raw_assets]
 
+all_jobs = [*raw_jobs,
+            ]
+
+all_sensors = [*raw_sensors,
+               ]
 
 @repository
 def visdag():
-    deployment_name = os.environ.get("DAG_DEPLOY", "dev")
-    resource_defs=resource_defs_by_deployment_name[deployment_name]
-    #definitions = [
-    #        #with_resources(
-    #        #    load_assets_from_package_module(assets),
-    #        #    *all_jobs,
-    #        #    ),
-    #        # Update all assets once a day
-    #        ScheduleDefinition(
-    #            job=define_asset_job("all_assets", selection="*"), 
-    #            cron_schedule="@daily"
-    #            ),
-    #        ]
-    #return definitions
-    return [load_assets_from_package_module(assets)]
+    """
+    "PARAMETER_NAME": {"env": "ENVIRONMENT_VARIABLE_NAME"}
+    resource_defs = {
+            "local": {
+                "db_type": {"env": "db_type"},
+                "db_user": {"env": "db_user"},
+                "db_pass": {"env": "db_pass"},
+                "db_name": {"env": "db_name"},
+                "db_host": {"env": "db_host"},
+                "db_port": {"env": "db_port"},
+                "RAW_DIRECTORY": {"env": "RAW_DIRECTORY"},
+                }
+            }
+
+    return [
+        *with_resources(all_assets, resource_defs["local"]),
+            *all_jobs,
+            ]
+    """
+    return [
+            all_jobs,
+            all_assets,
+            all_sensors,
+            ]
