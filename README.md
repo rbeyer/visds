@@ -13,12 +13,9 @@ pip install -e ".[dev]"
 
 Then, start the Dagit web server:
 =======
-# visds
+# visdag
 
 Welcome to your new Dagster repository.
-
-### TODO: 
-The repo contains both a visds and a visdag directory. Need to fix this by merging.
 
 ### Contents
 | Name                     | Description                                                                       |
@@ -26,8 +23,8 @@ The repo contains both a visds and a visdag directory. Need to fix this by mergi
 | `README.md`              | A description and guide for this code repository                                  |
 | `setup.py`               | A build script with Python package dependencies for this code repository          |
 | `workspace.yaml`         | A file that specifies the location of the user code for Dagit and the Dagster CLI |
-| `visds/`       | A Python directory that contains code for your Dagster repository                 |
-| `visds_tests/` | A Python directory that contains tests for `visds`                      |
+| `visdag/`       | A Python directory that contains code for your Dagster repository                 |
+| `visdag_tests/` | A Python directory that contains tests for `visdag`                      |
 
 ## Getting up and running
 
@@ -121,13 +118,13 @@ Check out the [Dagster Cloud Documentation](https://docs.dagster.cloud) to learn
 =======
 ## Local Testing
 
-Tests can be found in `visds_tests` and are run with the following command:
+Tests can be found in `visdag_tests` and are run with the following command:
 
 ```bash
-pytest visds_tests
+pytest visdag_tests
 ```
 
-As you create Dagster ops and graphs, add tests in `visds_tests/` to check that your
+As you create Dagster ops and graphs, add tests in `visdag_tests/` to check that your
 code behaves as desired and does not break over time.
 
 For hints on how to write tests for ops and graphs in Dagster,

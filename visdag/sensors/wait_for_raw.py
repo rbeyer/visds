@@ -29,6 +29,12 @@ def log_raw_json():
     process_json()
         
 
+# Create an asset_sensor to watch for an asset materialization run by
+# the yamcs callback function which will materialize an asset whenever
+# a new object is found in the subscription
+#@asset_sensor()
+
+
 # Watch for new json files to be created in the raw_products directory
 # Run this sensor no more often than every 60 seconds.
 #@sensor()
