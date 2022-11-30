@@ -17,8 +17,10 @@ Then, start the Dagit web server:
 
 Welcome to your new Dagster repository.
 
-### Contents
+### TODO: 
+The repo contains both a visds and a visdag directory. Need to fix this by merging.
 
+### Contents
 | Name                     | Description                                                                       |
 | ------------------------ | --------------------------------------------------------------------------------- |
 | `README.md`              | A description and guide for this code repository                                  |
