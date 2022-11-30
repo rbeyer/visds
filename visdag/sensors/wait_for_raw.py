@@ -10,6 +10,16 @@ def get_hash_for_file(fpath):
             md5.update(chunk)
     md5_checksum = md5.hexdigest()
     return(md5_checksum)
+
+
+@op(config_schema={"filename": str})
+def process_json(context):
+    filename = context.op_config["filename"]
+    context.log.info(filename)
+
+@job
+def log_raw_json():
+    process_json()
         
 
 # Watch for new json files to be created in the raw_products directory
