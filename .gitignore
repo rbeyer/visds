@@ -1,8 +1,9 @@
 # Local files for dagster
 history/
-schedules/
 .logs_queue/
 storage/
+backups/
+raw_files/
 *.swp
 
 # Byte-compiled / optimized / DLL files
